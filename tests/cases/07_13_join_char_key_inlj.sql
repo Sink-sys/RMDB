@@ -1,0 +1,13 @@
+create table lchar (code char(4), name char(8));
+create table rchar (code char(4), tag char(8));
+insert into lchar values ('a1', 'lc1');
+insert into lchar values ('b2', 'lc2');
+insert into lchar values ('c3', 'lc3');
+insert into rchar values ('a1', 'rc1');
+insert into rchar values ('c3', 'rc3');
+insert into rchar values ('d4', 'rc4');
+select lchar.name, rchar.tag from lchar join rchar on lchar.code = rchar.code;
+explain analyze select lchar.name, rchar.tag from lchar join rchar on lchar.code = rchar.code;
+create index rchar(code);
+select lchar.name, rchar.tag from lchar join rchar on lchar.code = rchar.code;
+explain analyze select lchar.name, rchar.tag from lchar join rchar on lchar.code = rchar.code;

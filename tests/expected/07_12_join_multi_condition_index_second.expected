@@ -1,0 +1,16 @@
+| name | tag |
+| li2 | ri20 |
+Project(columns=[lmi.name, rmi.tag], rows=1)
+	Join(tables=[lmi, rmi], condition=[lmi.code=rmi.code, lmi.id=rmi.id], rows=1)
+		Project(columns=[lmi.code, lmi.id, lmi.name], rows=3)
+			Scan(table=lmi, type=SeqScan, rows=3)
+		Project(columns=[rmi.code, rmi.id, rmi.tag], rows=9)
+			Scan(table=rmi, type=SeqScan, rows=9)
+| name | tag |
+| li2 | ri20 |
+Project(columns=[lmi.name, rmi.tag], rows=1)
+	Join(tables=[lmi, rmi], condition=[lmi.code=rmi.code, lmi.id=rmi.id], rows=1)
+		Project(columns=[lmi.code, lmi.id, lmi.name], rows=3)
+			Scan(table=lmi, type=SeqScan, rows=3)
+		Project(columns=[rmi.code, rmi.id, rmi.tag], rows=2)
+			Scan(table=rmi, type=IndexScan, using_index=(code), rows=2)

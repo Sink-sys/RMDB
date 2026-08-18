@@ -1,0 +1,16 @@
+| name | tag |
+| lw1 | rw1 |
+Project(columns=[lwrong.name, rwrong.tag], rows=1)
+	Join(tables=[lwrong, rwrong], condition=[lwrong.id=rwrong.id], rows=1)
+		Project(columns=[lwrong.id, lwrong.name], rows=2)
+			Scan(table=lwrong, type=SeqScan, rows=2)
+		Project(columns=[rwrong.id, rwrong.tag], rows=6)
+			Scan(table=rwrong, type=SeqScan, rows=6)
+| name | tag |
+| lw1 | rw1 |
+Project(columns=[lwrong.name, rwrong.tag], rows=1)
+	Join(tables=[lwrong, rwrong], condition=[lwrong.id=rwrong.id], rows=1)
+		Project(columns=[lwrong.id, lwrong.name], rows=2)
+			Scan(table=lwrong, type=SeqScan, rows=2)
+		Project(columns=[rwrong.id, rwrong.tag], rows=6)
+			Scan(table=rwrong, type=SeqScan, rows=6)

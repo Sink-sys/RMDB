@@ -1,0 +1,12 @@
+create table lwrong (id int, name char(8));
+create table rwrong (id int, other int, tag char(8));
+insert into lwrong values (1, 'lw1');
+insert into lwrong values (2, 'lw2');
+insert into rwrong values (1, 100, 'rw1');
+insert into rwrong values (3, 300, 'rw3');
+insert into rwrong values (4, 400, 'rw4');
+select lwrong.name, rwrong.tag from lwrong join rwrong on lwrong.id = rwrong.id;
+explain analyze select lwrong.name, rwrong.tag from lwrong join rwrong on lwrong.id = rwrong.id;
+create index rwrong(other);
+select lwrong.name, rwrong.tag from lwrong join rwrong on lwrong.id = rwrong.id;
+explain analyze select lwrong.name, rwrong.tag from lwrong join rwrong on lwrong.id = rwrong.id;

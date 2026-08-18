@@ -1,0 +1,32 @@
+| name | tag |
+| lp2 | rp2 |
+| lp4 | rp4 |
+Project(columns=[left_partial.name, right_partial.tag], rows=2)
+	Join(tables=[left_partial, right_partial], condition=[left_partial.id=right_partial.id], rows=2)
+		Project(columns=[left_partial.id, left_partial.name], rows=4)
+			Scan(table=left_partial, type=SeqScan, rows=4)
+		Project(columns=[right_partial.id, right_partial.tag], rows=12)
+			Scan(table=right_partial, type=SeqScan, rows=12)
+| name | tag |
+| lp2 | rp2 |
+| lp4 | rp4 |
+Project(columns=[left_partial.name, right_partial.tag], rows=2)
+	Join(tables=[left_partial, right_partial], condition=[left_partial.id=right_partial.id], rows=2)
+		Project(columns=[left_partial.id, left_partial.name], rows=4)
+			Scan(table=left_partial, type=SeqScan, rows=4)
+		Project(columns=[right_partial.id, right_partial.tag], rows=2)
+			Scan(table=right_partial, type=IndexScan, using_index=(id), rows=2)
+| name | tag |
+Project(columns=[left_none.name, right_none.tag], rows=0)
+	Join(tables=[left_none, right_none], condition=[left_none.id=right_none.id], rows=0)
+		Project(columns=[left_none.id, left_none.name], rows=3)
+			Scan(table=left_none, type=SeqScan, rows=3)
+		Project(columns=[right_none.id, right_none.tag], rows=6)
+			Scan(table=right_none, type=SeqScan, rows=6)
+| name | tag |
+Project(columns=[left_none.name, right_none.tag], rows=0)
+	Join(tables=[left_none, right_none], condition=[left_none.id=right_none.id], rows=0)
+		Project(columns=[left_none.id, left_none.name], rows=3)
+			Scan(table=left_none, type=SeqScan, rows=3)
+		Project(columns=[right_none.id, right_none.tag], rows=0)
+			Scan(table=right_none, type=IndexScan, using_index=(id), rows=0)

@@ -1,0 +1,22 @@
+| a | b | c |
+| a1 | b1 | c1 |
+Project(columns=[ta14.a, tb14.b, tc14.c], rows=1)
+	Join(tables=[ta14, tb14, tc14], condition=[tb14.id=tc14.id], rows=1)
+		Join(tables=[ta14, tb14], condition=[ta14.id=tb14.id], rows=2)
+			Project(columns=[ta14.a, ta14.id], rows=3)
+				Scan(table=ta14, type=SeqScan, rows=3)
+			Project(columns=[tb14.b, tb14.id], rows=9)
+				Scan(table=tb14, type=SeqScan, rows=9)
+		Project(columns=[tc14.c, tc14.id], rows=6)
+			Scan(table=tc14, type=SeqScan, rows=6)
+| a | b | c |
+| a1 | b1 | c1 |
+Project(columns=[ta14.a, tb14.b, tc14.c], rows=1)
+	Join(tables=[ta14, tb14, tc14], condition=[tb14.id=tc14.id], rows=1)
+		Join(tables=[ta14, tb14], condition=[ta14.id=tb14.id], rows=2)
+			Project(columns=[ta14.a, ta14.id], rows=3)
+				Scan(table=ta14, type=SeqScan, rows=3)
+			Project(columns=[tb14.b, tb14.id], rows=2)
+				Scan(table=tb14, type=IndexScan, using_index=(id), rows=2)
+		Project(columns=[tc14.c, tc14.id], rows=1)
+			Scan(table=tc14, type=IndexScan, using_index=(id), rows=1)

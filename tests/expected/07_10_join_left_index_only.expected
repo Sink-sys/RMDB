@@ -1,0 +1,16 @@
+| name | tag |
+| lo1 | ro1 |
+Project(columns=[lonly.name, ronly.tag], rows=1)
+	Join(tables=[lonly, ronly], condition=[lonly.id=ronly.id], rows=1)
+		Project(columns=[lonly.id, lonly.name], rows=3)
+			Scan(table=lonly, type=SeqScan, rows=3)
+		Project(columns=[ronly.id, ronly.tag], rows=6)
+			Scan(table=ronly, type=SeqScan, rows=6)
+| name | tag |
+| lo1 | ro1 |
+Project(columns=[lonly.name, ronly.tag], rows=1)
+	Join(tables=[lonly, ronly], condition=[lonly.id=ronly.id], rows=1)
+		Project(columns=[lonly.id, lonly.name], rows=3)
+			Scan(table=lonly, type=SeqScan, rows=3)
+		Project(columns=[ronly.id, ronly.tag], rows=6)
+			Scan(table=ronly, type=SeqScan, rows=6)

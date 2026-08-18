@@ -1,0 +1,27 @@
+| id | max_score | min_score | sum_score |
+| 1 | 99.000000 | 92.000000 | 286.000000 |
+| 2 | 93.500000 | 88.500000 | 271.000000 |
+| 3 | 94.500000 | 89.500000 | 276.500000 |
+| id | max_score |
+| id | max_score |
+| 1 | 100.000000 |
+| id | max_score | min_score |
+| 1 | 100.000000 | 92.000000 |
+| 2 | 93.500000 | 88.500000 |
+| 3 | 94.500000 | 89.500000 |
+| course | row_num | student_num | top_score | lowest_score |
+| DataStructure | 3 | 3 | 95.000000 | 93.500000 |
+| ComputerNetworks | 3 | 3 | 99.000000 | 88.500000 |
+| C++ | 3 | 3 | 92.000000 | 89.000000 |
+| ParallelCompute | 1 | 1 | 100.000000 | 100.000000 |
+| course | id | score |
+| ParallelCompute | 1 | 100.000000 |
+| ComputerNetworks | 1 | 99.000000 |
+| DataStructure | 1 | 95.000000 |
+| DataStructure | 3 | 94.500000 |
+| DataStructure | 2 | 93.500000 |
+| ComputerNetworks | 3 | 92.500000 |
+| C++ | 1 | 92.000000 |
+| C++ | 3 | 89.500000 |
+| C++ | 2 | 89.000000 |
+| ComputerNetworks | 2 | 88.500000 |

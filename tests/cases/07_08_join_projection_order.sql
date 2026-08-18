@@ -1,0 +1,11 @@
+create table lsort (id int, name char(8));
+create table rsort (id int, tag char(8));
+insert into lsort values (1, 'ls1');
+insert into lsort values (2, 'ls2');
+insert into rsort values (1, 'rs1');
+insert into rsort values (2, 'rs2');
+select rsort.tag, lsort.name from lsort join rsort on lsort.id = rsort.id;
+explain analyze select rsort.tag, lsort.name from lsort join rsort on lsort.id = rsort.id;
+create index rsort(id);
+select rsort.tag, lsort.name from lsort join rsort on lsort.id = rsort.id;
+explain analyze select rsort.tag, lsort.name from lsort join rsort on lsort.id = rsort.id;

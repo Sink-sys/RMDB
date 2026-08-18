@@ -1,0 +1,17 @@
+---
+Checks: >
+  -*,
+  bugprone-*,
+  performance-*,
+  modernize-use-nullptr,
+  modernize-use-override,
+  modernize-use-using,
+  readability-container-size-empty,
+  readability-redundant-control-flow,
+  readability-redundant-smartptr-get,
+  readability-static-accessed-through-instance
+WarningsAsErrors: ''
+CheckOptions:
+  bugprone-easily-swappable-parameters.MinimumLength: '4'
+FormatStyle: file
+...

@@ -1,0 +1,18 @@
+create table ta14 (id int, a char(8));
+create table tb14 (id int, b char(8));
+create table tc14 (id int, c char(8));
+insert into ta14 values (1, 'a1');
+insert into ta14 values (2, 'a2');
+insert into ta14 values (3, 'a3');
+insert into tb14 values (1, 'b1');
+insert into tb14 values (2, 'b2');
+insert into tb14 values (4, 'b4');
+insert into tc14 values (1, 'c1');
+insert into tc14 values (3, 'c3');
+insert into tc14 values (5, 'c5');
+select ta14.a, tb14.b, tc14.c from ta14 join tb14 on ta14.id = tb14.id join tc14 on tb14.id = tc14.id;
+explain analyze select ta14.a, tb14.b, tc14.c from ta14 join tb14 on ta14.id = tb14.id join tc14 on tb14.id = tc14.id;
+create index tb14(id);
+create index tc14(id);
+select ta14.a, tb14.b, tc14.c from ta14 join tb14 on ta14.id = tb14.id join tc14 on tb14.id = tc14.id;
+explain analyze select ta14.a, tb14.b, tc14.c from ta14 join tb14 on ta14.id = tb14.id join tc14 on tb14.id = tc14.id;

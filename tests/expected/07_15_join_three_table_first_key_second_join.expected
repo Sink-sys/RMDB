@@ -1,0 +1,22 @@
+| a | b | c |
+| a1 | b1 | c10 |
+Project(columns=[a15.a, b15.b, c15.c], rows=1)
+	Join(tables=[a15, b15, c15], condition=[a15.link=c15.id], rows=1)
+		Join(tables=[a15, b15], condition=[a15.id=b15.id], rows=2)
+			Project(columns=[a15.a, a15.id, a15.link], rows=3)
+				Scan(table=a15, type=SeqScan, rows=3)
+			Project(columns=[b15.b, b15.id], rows=9)
+				Scan(table=b15, type=SeqScan, rows=9)
+		Project(columns=[c15.c, c15.id], rows=6)
+			Scan(table=c15, type=SeqScan, rows=6)
+| a | b | c |
+| a1 | b1 | c10 |
+Project(columns=[a15.a, b15.b, c15.c], rows=1)
+	Join(tables=[a15, b15, c15], condition=[a15.link=c15.id], rows=1)
+		Join(tables=[a15, b15], condition=[a15.id=b15.id], rows=2)
+			Project(columns=[a15.a, a15.id, a15.link], rows=3)
+				Scan(table=a15, type=SeqScan, rows=3)
+			Project(columns=[b15.b, b15.id], rows=2)
+				Scan(table=b15, type=IndexScan, using_index=(id), rows=2)
+		Project(columns=[c15.c, c15.id], rows=1)
+			Scan(table=c15, type=IndexScan, using_index=(id), rows=1)

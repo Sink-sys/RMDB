@@ -1,0 +1,13 @@
+create table lrev (id int, name char(8));
+create table rrev (id int, tag char(8));
+insert into lrev values (1, 'lr1');
+insert into lrev values (2, 'lr2');
+insert into lrev values (3, 'lr3');
+insert into rrev values (1, 'rr1');
+insert into rrev values (3, 'rr3');
+insert into rrev values (4, 'rr4');
+select lrev.name, rrev.tag from lrev join rrev on rrev.id = lrev.id;
+explain analyze select lrev.name, rrev.tag from lrev join rrev on rrev.id = lrev.id;
+create index rrev(id);
+select lrev.name, rrev.tag from lrev join rrev on rrev.id = lrev.id;
+explain analyze select lrev.name, rrev.tag from lrev join rrev on rrev.id = lrev.id;

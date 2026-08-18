@@ -1,0 +1,16 @@
+| name | tag |
+| ml1 | mr1 |
+Project(columns=[lmc.name, rmc.tag], rows=1)
+	Join(tables=[lmc, rmc], condition=[lmc.code=rmc.code, lmc.id=rmc.id], rows=1)
+		Project(columns=[lmc.code, lmc.id, lmc.name], rows=3)
+			Scan(table=lmc, type=SeqScan, rows=3)
+		Project(columns=[rmc.code, rmc.id, rmc.tag], rows=9)
+			Scan(table=rmc, type=SeqScan, rows=9)
+| name | tag |
+| ml1 | mr1 |
+Project(columns=[lmc.name, rmc.tag], rows=1)
+	Join(tables=[lmc, rmc], condition=[lmc.code=rmc.code, lmc.id=rmc.id], rows=1)
+		Project(columns=[lmc.code, lmc.id, lmc.name], rows=3)
+			Scan(table=lmc, type=SeqScan, rows=3)
+		Project(columns=[rmc.code, rmc.id, rmc.tag], rows=2)
+			Scan(table=rmc, type=IndexScan, using_index=(id), rows=2)

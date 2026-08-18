@@ -1,0 +1,15 @@
+create table na16 (id int, a char(8));
+create table nb16 (id int, b char(8));
+create table nc16 (id int, c char(8));
+insert into na16 values (1, 'na1');
+insert into na16 values (2, 'na2');
+insert into nb16 values (10, 'nb10');
+insert into nb16 values (20, 'nb20');
+insert into nc16 values (10, 'nc10');
+insert into nc16 values (20, 'nc20');
+select na16.a, nb16.b, nc16.c from na16 join nb16 on na16.id = nb16.id join nc16 on nb16.id = nc16.id;
+explain analyze select na16.a, nb16.b, nc16.c from na16 join nb16 on na16.id = nb16.id join nc16 on nb16.id = nc16.id;
+create index nb16(id);
+create index nc16(id);
+select na16.a, nb16.b, nc16.c from na16 join nb16 on na16.id = nb16.id join nc16 on nb16.id = nc16.id;
+explain analyze select na16.a, nb16.b, nc16.c from na16 join nb16 on na16.id = nb16.id join nc16 on nb16.id = nc16.id;

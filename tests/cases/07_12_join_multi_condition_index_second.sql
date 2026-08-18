@@ -1,0 +1,13 @@
+create table lmi (id int, code int, name char(8));
+create table rmi (id int, code int, tag char(8));
+insert into lmi values (1, 10, 'li1');
+insert into lmi values (2, 20, 'li2');
+insert into lmi values (3, 30, 'li3');
+insert into rmi values (99, 10, 'ri10');
+insert into rmi values (2, 20, 'ri20');
+insert into rmi values (4, 40, 'ri40');
+select lmi.name, rmi.tag from lmi join rmi on lmi.code = rmi.code and lmi.id = rmi.id;
+explain analyze select lmi.name, rmi.tag from lmi join rmi on lmi.code = rmi.code and lmi.id = rmi.id;
+create index rmi(code);
+select lmi.name, rmi.tag from lmi join rmi on lmi.code = rmi.code and lmi.id = rmi.id;
+explain analyze select lmi.name, rmi.tag from lmi join rmi on lmi.code = rmi.code and lmi.id = rmi.id;
