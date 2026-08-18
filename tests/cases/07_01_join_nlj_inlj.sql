@@ -1,0 +1,17 @@
+create table departments (dept_id int, dept_name char(20));
+create table employees (emp_id int, dept_id int, emp_name char(20), salary int);
+insert into departments values (10, 'Finance');
+insert into departments values (20, 'HR');
+insert into departments values (30, 'Sales');
+insert into departments values (40, 'Engineering');
+insert into departments values (50, 'Marketing');
+insert into employees values (1, 10, 'Alice', 65000);
+insert into employees values (2, 20, 'Bob', 48000);
+insert into employees values (3, 30, 'Charlie', 52000);
+insert into employees values (4, 40, 'Diana', 70000);
+insert into employees values (5, 50, 'Eve', 55000);
+select departments.dept_name, employees.emp_name from departments join employees on departments.dept_id = employees.dept_id;
+explain analyze select departments.dept_name, employees.emp_name from departments join employees on departments.dept_id = employees.dept_id;
+create index employees(dept_id);
+select departments.dept_name, employees.emp_name from departments join employees on departments.dept_id = employees.dept_id;
+explain analyze select departments.dept_name, employees.emp_name from departments join employees on departments.dept_id = employees.dept_id;

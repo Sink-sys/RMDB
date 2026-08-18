@@ -1,0 +1,14 @@
+create table update_chain (id int, a int, b int, f float);
+insert into update_chain values (1, 10, 0, 1607.808);
+insert into update_chain values (2, 20, 100, 1.0);
+update update_chain set a = a - 1 + 91, b = a + 5 - 0, f = f - 53.236 + 8888.298 where id = 1;
+select * from update_chain where id = 1;
+update update_chain set a = a - 3 + 7, b = a + 100 - 1, f = f - 2.0 + 4.0 where id = 2;
+select * from update_chain where id = 2;
+create index update_chain(a);
+update update_chain set a = a + 1 - 0 where id = 1;
+select * from update_chain where a = 101;
+begin;
+update update_chain set a = a + 10 - 1, b = a + 2 - 1 where id = 1;
+abort;
+select * from update_chain where id = 1;

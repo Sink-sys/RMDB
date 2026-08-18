@@ -1,0 +1,13 @@
+create table lmc (id int, code int, name char(8));
+create table rmc (id int, code int, tag char(8));
+insert into lmc values (1, 10, 'ml1');
+insert into lmc values (2, 20, 'ml2');
+insert into lmc values (3, 30, 'ml3');
+insert into rmc values (1, 10, 'mr1');
+insert into rmc values (2, 99, 'mr2');
+insert into rmc values (4, 40, 'mr4');
+select lmc.name, rmc.tag from lmc join rmc on lmc.id = rmc.id and lmc.code = rmc.code;
+explain analyze select lmc.name, rmc.tag from lmc join rmc on lmc.id = rmc.id and lmc.code = rmc.code;
+create index rmc(id);
+select lmc.name, rmc.tag from lmc join rmc on lmc.id = rmc.id and lmc.code = rmc.code;
+explain analyze select lmc.name, rmc.tag from lmc join rmc on lmc.id = rmc.id and lmc.code = rmc.code;

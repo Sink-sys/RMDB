@@ -1,0 +1,18 @@
+create table a15 (id int, link int, a char(8));
+create table b15 (id int, b char(8));
+create table c15 (id int, c char(8));
+insert into a15 values (1, 10, 'a1');
+insert into a15 values (2, 20, 'a2');
+insert into a15 values (3, 30, 'a3');
+insert into b15 values (1, 'b1');
+insert into b15 values (2, 'b2');
+insert into b15 values (4, 'b4');
+insert into c15 values (10, 'c10');
+insert into c15 values (30, 'c30');
+insert into c15 values (40, 'c40');
+select a15.a, b15.b, c15.c from a15 join b15 on a15.id = b15.id join c15 on a15.link = c15.id;
+explain analyze select a15.a, b15.b, c15.c from a15 join b15 on a15.id = b15.id join c15 on a15.link = c15.id;
+create index b15(id);
+create index c15(id);
+select a15.a, b15.b, c15.c from a15 join b15 on a15.id = b15.id join c15 on a15.link = c15.id;
+explain analyze select a15.a, b15.b, c15.c from a15 join b15 on a15.id = b15.id join c15 on a15.link = c15.id;

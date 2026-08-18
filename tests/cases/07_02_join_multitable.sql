@@ -1,0 +1,18 @@
+create table departments (dept_id int, dept_name char(20));
+create table employees (emp_id int, dept_id int, emp_name char(20));
+create table offices (office_id int, dept_id int, office_name char(20));
+insert into departments values (10, 'Finance');
+insert into departments values (20, 'HR');
+insert into departments values (30, 'Sales');
+insert into employees values (1, 10, 'Alice');
+insert into employees values (2, 20, 'Bob');
+insert into employees values (3, 30, 'Charlie');
+insert into offices values (101, 10, 'HQ');
+insert into offices values (102, 20, 'Remote');
+insert into offices values (103, 30, 'Field');
+select departments.dept_name, employees.emp_name, offices.office_name from departments join employees on departments.dept_id = employees.dept_id join offices on departments.dept_id = offices.dept_id;
+explain analyze select departments.dept_name, employees.emp_name, offices.office_name from departments join employees on departments.dept_id = employees.dept_id join offices on departments.dept_id = offices.dept_id;
+create index employees(dept_id);
+create index offices(dept_id);
+select departments.dept_name, employees.emp_name, offices.office_name from departments join employees on departments.dept_id = employees.dept_id join offices on departments.dept_id = offices.dept_id;
+explain analyze select departments.dept_name, employees.emp_name, offices.office_name from departments join employees on departments.dept_id = employees.dept_id join offices on departments.dept_id = offices.dept_id;

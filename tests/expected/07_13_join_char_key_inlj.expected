@@ -1,0 +1,18 @@
+| name | tag |
+| lc1 | rc1 |
+| lc3 | rc3 |
+Project(columns=[lchar.name, rchar.tag], rows=2)
+	Join(tables=[lchar, rchar], condition=[lchar.code=rchar.code], rows=2)
+		Project(columns=[lchar.code, lchar.name], rows=3)
+			Scan(table=lchar, type=SeqScan, rows=3)
+		Project(columns=[rchar.code, rchar.tag], rows=9)
+			Scan(table=rchar, type=SeqScan, rows=9)
+| name | tag |
+| lc1 | rc1 |
+| lc3 | rc3 |
+Project(columns=[lchar.name, rchar.tag], rows=2)
+	Join(tables=[lchar, rchar], condition=[lchar.code=rchar.code], rows=2)
+		Project(columns=[lchar.code, lchar.name], rows=3)
+			Scan(table=lchar, type=SeqScan, rows=3)
+		Project(columns=[rchar.code, rchar.tag], rows=2)
+			Scan(table=rchar, type=IndexScan, using_index=(code), rows=2)

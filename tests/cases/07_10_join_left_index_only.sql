@@ -1,0 +1,12 @@
+create table lonly (id int, name char(8));
+create table ronly (id int, tag char(8));
+insert into lonly values (1, 'lo1');
+insert into lonly values (2, 'lo2');
+insert into lonly values (3, 'lo3');
+insert into ronly values (1, 'ro1');
+insert into ronly values (4, 'ro4');
+select lonly.name, ronly.tag from lonly join ronly on lonly.id = ronly.id;
+explain analyze select lonly.name, ronly.tag from lonly join ronly on lonly.id = ronly.id;
+create index lonly(id);
+select lonly.name, ronly.tag from lonly join ronly on lonly.id = ronly.id;
+explain analyze select lonly.name, ronly.tag from lonly join ronly on lonly.id = ronly.id;

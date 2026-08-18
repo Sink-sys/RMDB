@@ -1,0 +1,18 @@
+create table idx_mix (id int, name char(8), score float);
+insert into idx_mix values (1, 'alpha', 70.0);
+insert into idx_mix values (2, 'beta', 81.0);
+insert into idx_mix values (2, 'gamma', 92.0);
+insert into idx_mix values (4, 'delta', 88.5);
+insert into idx_mix values (5, 'eta', 99.0);
+create index idx_mix(id,name,score);
+select id, name, score from idx_mix where id = 2;
+select id, name, score from idx_mix where name = 'gamma' and id = 2;
+select id, name, score from idx_mix where id = 2 and name = 'gamma' and score > 90.0;
+select id, name, score from idx_mix where id > 3;
+select id, name, score from idx_mix where id = 99;
+create table uniq_guard (id int, code char(8));
+insert into uniq_guard values (1, 'aa');
+insert into uniq_guard values (2, 'bb');
+create index uniq_guard(id);
+update uniq_guard set id = 1 where code = 'bb';
+select * from uniq_guard;

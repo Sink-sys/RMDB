@@ -1,0 +1,26 @@
+| dept_name | emp_name | office_name |
+| Finance | Alice | HQ |
+| HR | Bob | Remote |
+| Sales | Charlie | Field |
+Project(columns=[departments.dept_name, employees.emp_name, offices.office_name], rows=3)
+	Join(tables=[departments, employees, offices], condition=[departments.dept_id=offices.dept_id], rows=3)
+		Join(tables=[departments, employees], condition=[departments.dept_id=employees.dept_id], rows=3)
+			Project(columns=[departments.dept_id, departments.dept_name], rows=3)
+				Scan(table=departments, type=SeqScan, rows=3)
+			Project(columns=[employees.dept_id, employees.emp_name], rows=9)
+				Scan(table=employees, type=SeqScan, rows=9)
+		Project(columns=[offices.dept_id, offices.office_name], rows=9)
+			Scan(table=offices, type=SeqScan, rows=9)
+| dept_name | emp_name | office_name |
+| Finance | Alice | HQ |
+| HR | Bob | Remote |
+| Sales | Charlie | Field |
+Project(columns=[departments.dept_name, employees.emp_name, offices.office_name], rows=3)
+	Join(tables=[departments, employees, offices], condition=[departments.dept_id=offices.dept_id], rows=3)
+		Join(tables=[departments, employees], condition=[departments.dept_id=employees.dept_id], rows=3)
+			Project(columns=[departments.dept_id, departments.dept_name], rows=3)
+				Scan(table=departments, type=SeqScan, rows=3)
+			Project(columns=[employees.dept_id, employees.emp_name], rows=3)
+				Scan(table=employees, type=IndexScan, using_index=(dept_id), rows=3)
+		Project(columns=[offices.dept_id, offices.office_name], rows=3)
+			Scan(table=offices, type=IndexScan, using_index=(dept_id), rows=3)

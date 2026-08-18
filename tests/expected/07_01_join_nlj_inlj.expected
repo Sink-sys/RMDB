@@ -1,0 +1,24 @@
+| dept_name | emp_name |
+| Finance | Alice |
+| HR | Bob |
+| Sales | Charlie |
+| Engineering | Diana |
+| Marketing | Eve |
+Project(columns=[departments.dept_name, employees.emp_name], rows=5)
+	Join(tables=[departments, employees], condition=[departments.dept_id=employees.dept_id], rows=5)
+		Project(columns=[departments.dept_id, departments.dept_name], rows=5)
+			Scan(table=departments, type=SeqScan, rows=5)
+		Project(columns=[employees.dept_id, employees.emp_name], rows=25)
+			Scan(table=employees, type=SeqScan, rows=25)
+| dept_name | emp_name |
+| Finance | Alice |
+| HR | Bob |
+| Sales | Charlie |
+| Engineering | Diana |
+| Marketing | Eve |
+Project(columns=[departments.dept_name, employees.emp_name], rows=5)
+	Join(tables=[departments, employees], condition=[departments.dept_id=employees.dept_id], rows=5)
+		Project(columns=[departments.dept_id, departments.dept_name], rows=5)
+			Scan(table=departments, type=SeqScan, rows=5)
+		Project(columns=[employees.dept_id, employees.emp_name], rows=5)
+			Scan(table=employees, type=IndexScan, using_index=(dept_id), rows=5)

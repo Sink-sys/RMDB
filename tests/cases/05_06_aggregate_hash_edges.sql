@@ -1,0 +1,12 @@
+create table agg_edge (f float, a char(4), b char(4), v int, x float);
+insert into agg_edge values (0.0, 'a|', 'b', 1, 16777216.0);
+insert into agg_edge values (-0.0, 'a|', 'b', 2, 1.0);
+insert into agg_edge values (0.0, 'a', '|b', 3, -16777216.0);
+insert into agg_edge values (-0.0, 'a', '|b', 3, 0.0);
+select f, count(*) as c, count(distinct v) as dc, count(distinct f) as dz, sum(v) as s, sum(x) as sx from agg_edge group by f having sum(v) = 9;
+select a, b, count(*) as c, sum(v) as s from agg_edge group by a, b order by a, b;
+select a, sum(v) as s, sum(v) as repeated_s, count(distinct v) as dc from agg_edge group by a having sum(v) >= 3 order by a;
+select count(*) as c, sum(v) as s from agg_edge where v > 100;
+select count(*) as c from agg_edge where v > 100 having count(*) = 0;
+select count(*) as c from agg_edge where v > 100 having count(*) > 0;
+drop table agg_edge;

@@ -1,0 +1,20 @@
+| name | tag |
+| l1 | r1 |
+Project(columns=[left_t.name, right_t.tag], rows=1)
+	Join(tables=[left_t, right_t], condition=[left_t.code=right_t.code], rows=1)
+		Project(columns=[left_t.code, left_t.name], rows=3)
+			Scan(table=left_t, type=SeqScan, rows=3)
+		Project(columns=[right_t.code, right_t.tag], rows=6)
+			Scan(table=right_t, type=SeqScan, rows=6)
+| name | tag |
+| l1 | r1 |
+Project(columns=[left_t.name, right_t.tag], rows=1)
+	Join(tables=[left_t, right_t], condition=[left_t.code=right_t.code], rows=1)
+		Project(columns=[left_t.code, left_t.name], rows=3)
+			Scan(table=left_t, type=SeqScan, rows=3)
+		Project(columns=[right_t.code, right_t.tag], rows=1)
+			Scan(table=right_t, type=IndexScan, using_index=(code), rows=1)
+| v | v | v |
+| 10 | 20 | 30 |
+| v | v |
+| 100 | 300 |

@@ -1,0 +1,18 @@
+| tag | name |
+| rs1 | ls1 |
+| rs2 | ls2 |
+Project(columns=[lsort.name, rsort.tag], rows=2)
+	Join(tables=[lsort, rsort], condition=[lsort.id=rsort.id], rows=2)
+		Project(columns=[lsort.id, lsort.name], rows=2)
+			Scan(table=lsort, type=SeqScan, rows=2)
+		Project(columns=[rsort.id, rsort.tag], rows=4)
+			Scan(table=rsort, type=SeqScan, rows=4)
+| tag | name |
+| rs1 | ls1 |
+| rs2 | ls2 |
+Project(columns=[lsort.name, rsort.tag], rows=2)
+	Join(tables=[lsort, rsort], condition=[lsort.id=rsort.id], rows=2)
+		Project(columns=[lsort.id, lsort.name], rows=2)
+			Scan(table=lsort, type=SeqScan, rows=2)
+		Project(columns=[rsort.id, rsort.tag], rows=2)
+			Scan(table=rsort, type=IndexScan, using_index=(id), rows=2)

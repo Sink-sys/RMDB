@@ -1,0 +1,15 @@
+| id | name | score |
+| 2 | beta | 81.000000 |
+| 2 | gamma | 92.000000 |
+| id | name | score |
+| 2 | gamma | 92.000000 |
+| id | name | score |
+| 2 | gamma | 92.000000 |
+| id | name | score |
+| 4 | delta | 88.500000 |
+| 5 | eta | 99.000000 |
+| id | name | score |
+failure
+| id | code |
+| 1 | aa |
+| 2 | bb |
